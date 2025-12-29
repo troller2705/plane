@@ -6,6 +6,7 @@ from .member import urlpatterns as member_patterns
 from .module import urlpatterns as module_patterns
 from .project import urlpatterns as project_patterns
 from .state import urlpatterns as state_patterns
+from plane.api.views.state_group import StateGroupViewSet
 from .user import urlpatterns as user_patterns
 from .work_item import urlpatterns as work_item_patterns
 from .invite import urlpatterns as invite_patterns
@@ -24,4 +25,14 @@ urlpatterns = [
     *work_item_patterns,
     *invite_patterns,
     *sticky_patterns,
+    path(
+        "workspaces/<str:slug>/state-groups/", 
+        StateGroupViewSet.as_view({'get': 'list', 'post': 'create'}), 
+        name="groups"
+    ),
+    path(
+        "workspaces/<str:slug>/state-groups/<uuid:pk>/", 
+        StateGroupViewSet.as_view({'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'}), 
+        name="groups-detail"
+    ),
 ]

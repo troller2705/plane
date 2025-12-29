@@ -11,16 +11,22 @@ RUN apk update && apk upgrade
 
 WORKDIR /code
 
+# --- MODIFIED: Added LDAP runtime libraries here ---
 RUN apk add --no-cache --upgrade \
     "libpq" \
     "libxslt" \
     "xmlsec" \
     "ca-certificates" \
-    "openssl"
+    "openssl" \
+    "libldap" \
+    "openldap-clients" \
+    "cyrus-sasl"
 
 COPY requirements.txt ./
 COPY requirements ./requirements
 RUN apk add --no-cache libffi-dev
+
+# --- MODIFIED: Added LDAP build headers here ---
 RUN apk add --no-cache --virtual .build-deps \
     "bash~=5.2" \
     "g++" \
@@ -31,6 +37,8 @@ RUN apk add --no-cache --virtual .build-deps \
     "postgresql-dev" \
     "libc-dev" \
     "linux-headers" \
+    "openldap-dev" \
+    "cyrus-sasl-dev" \
     && \
     pip install -r requirements.txt --compile --no-cache-dir \
     && \

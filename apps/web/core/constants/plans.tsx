@@ -64,6 +64,7 @@ export function ComingSoonBadge({ className }: { className?: string }) {
 
 export const PLANS_LIST: TPlanePlans[] = ["free", "one", "pro", "business", "enterprise"];
 
+// AIO Configuration: All features enabled for Free plan
 export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
   {
     id: "project-work-tracking",
@@ -140,7 +141,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Estimates",
         description: "Measure effort in points in a system that works for\nyou.",
         cloud: {
-          free: "Basic",
+          free: "Advanced",
           one: "Basic",
           pro: "Advanced",
           business: "Advanced",
@@ -157,28 +158,18 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Bulk Ops",
         description: "Add several work items to cycles or modules, transfer\nthem, or edit their properties.",
         cloud: {
-          free: false,
+          free: true,
           one: "Limited props",
           pro: "All props",
-          business: (
-            <span className="flex flex-col items-end lg:items-center gap-1">
-              <ComingSoonBadge />
-              Work item transfers and conversions
-            </span>
-          ),
-          enterprise: (
-            <span className="flex flex-col items-end lg:items-center gap-1">
-              <ComingSoonBadge />
-              Work item transfers and conversions
-            </span>
-          ),
+          business: true,
+          enterprise: true,
         },
       },
       {
         title: "Time Tracking + Worklogs",
         description: "Track time per work item, see aggregated reports, and\nfilter by need.",
         cloud: {
-          free: false,
+          free: "Historical timesheets\nand approvals",
           one: "Basic",
           pro: "Historical timesheets",
           business: "Historical timesheets\nand approvals",
@@ -189,7 +180,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Active Cycles",
         description: "See all running cycles across all projects, or soon, in\na single project.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -200,7 +191,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Work item Types",
         description: "Create your own work item types with your own\nproperties.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -211,7 +202,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Custom Properties",
         description: "Create your own properties and apply them to your\nworkspace or project.",
         cloud: {
-          free: false,
+          free: "Workspace-level\nproperties and roll-ups",
           one: false,
           pro: "Project-level\ncustom properties",
           business: "Workspace-level\nproperties and roll-ups",
@@ -222,7 +213,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Dependencies in Gantt",
         description: "Adjust timelines for dependent work items visually on\nour Gantt layout.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -233,7 +224,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Work item Transfers",
         description: "Move a work item from a project or a cycle to\nanother.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -245,7 +236,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description:
           "Transfer incomplete work items from a completed cycle\nto the next cycle or to the default project state. ",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -256,7 +247,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Epics",
         description: "Organize long-term work in epics that house work items,\ncycles, and modules.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -268,7 +259,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Create initiatives to roll up several epics.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -281,7 +272,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
           "Add markers to Projects, Epics and Initiatives to keep your\nteam on track and report on progress.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -292,7 +283,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Module Overview",
         description: "Like Cycle Overviews, see relevant details and\nprogress charts for each module.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -303,31 +294,19 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Auto-assignment In Modules",
         description: "Choose assignment rules for work items in a\nmodule including Linear, Round Robin, or Capacity.",
         cloud: {
-          free: false,
+          free: "Round-robin and Capacity",
           one: false,
           pro: "Linear",
           business: "Round-robin and Capacity",
           enterprise: "Round-robin and Capacity",
         },
       },
-      // {
-      //   title: "Project Overview",
-      //   description: "See just-in-time snapshots of your project with\nessential metrics.",
-      //   comingSoon: true,
-      //   cloud: {
-      //     free: false,
-      //     one: false,
-      //     pro: true,
-      //     business: true,
-      //     enterprise: true,
-      //   },
-      // },
       {
         title: "Public, Private, and Secret projects",
         description:
           "Public projects are visible and accessible to\neveryone. Private ones are visible but need approval\nto join. Secret projects aren't visible or accessible.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -339,33 +318,20 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description:
           "See all projects laid across states that highlight\nthose that need attention and those on track.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
           enterprise: true,
         },
       },
-      // {
-      //   title: "Project Updates",
-      //   description:
-      //     "Keep stakeholders in the loop with a dedicated\nspace for updates that everyone in the project can\nsee.",
-      //   comingSoon: true,
-      //   cloud: {
-      //     free: false,
-      //     one: false,
-      //     pro: true,
-      //     business: true,
-      //     enterprise: true,
-      //   },
-      // },
       {
         title: "Pre-defined work item Templates",
         description:
           "Choose from our available work item templates that\ncustomize work item types and properties for several\nuse cases.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -376,7 +342,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Teamspace Cycles",
         description: "See multiple cycles in multiple projects at once.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -387,7 +353,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Project Templates",
         description: "Save states, workflows, automation, and other project\nsettings into templates.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -398,7 +364,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Baselines And Deviations",
         description: "Declare baselines for how your projects progress\nand zoom in on deviations.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -409,7 +375,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Scheduled Comms",
         description: "Schedule reports, notifications, and messages to\nthird-party tools.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -420,7 +386,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Intake Assignees",
         description: "Assign approved Intake work items to a member by\ndefault.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -431,7 +397,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Custom SLAs",
         description: "Set SLA matrices for time-sensitive work items.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -442,7 +408,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Intake Forms",
         description: "Take Intake work items from externally accessible web\nforms.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -454,7 +420,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Get an email address for reporting work items\ndirectly into a project's Intake.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -494,7 +460,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Shared Views",
         description: "Choose a few members to share a view with.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -505,7 +471,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Publish Views",
         description: "Put a view on the Internet and let your customers\ninteract with them.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -516,7 +482,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Dashboards and Widgets",
         description: "Create your own dashboards with custom widgets\nand data types.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -534,7 +500,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description:
           "Track progress in cycles, modules, and overviews\nthroughout Plane without switching to dashboards\nor Analytics.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -545,7 +511,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Cycle Reports",
         description: "Get on-demand cycle reports during and after a\ncycle. Revisit reports anytime from permalinks.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -557,31 +523,19 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Hindsight, On-demand insights, Foresights.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
           enterprise: true,
         },
       },
-      // {
-      //   title: "Time Capsule",
-      //   description: "Go back in your project's timeline and see point-in-\ntime snapshots.",
-      //   comingSoon: true,
-      //   cloud: {
-      //     free: false,
-      //     one: false,
-      //     pro: false,
-      //     business: true,
-      //     enterprise: true,
-      //   },
-      // },
       {
         title: "Advanced Pages Analytics",
         description: "See who's viewing, sharing, and commenting on\nyour pages along with other useful info.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -593,7 +547,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Generate reports by any dimension and metric\nacross your project or workspace.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -617,44 +571,12 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
           enterprise: true,
         },
       },
-      // {
-      //   title: "Search",
-      //   description: "Search via natural-language queries, operators, or\nPQL",
-      //   cloud: {
-      //     free: "Basic text search",
-      //     one: "Basic text search",
-      //     pro: (
-      //       <span className="flex flex-col items-end lg:items-center gap-1">
-      //         <span className="bg-[#3f76ff] text-on-color font-semibold text-9 p-0.5 w-fit whitespace-nowrap rounded-xs">
-      //           COMING SOON
-      //         </span>
-      //         Operator capsules from text or PQL
-      //       </span>
-      //     ),
-      //     business: (
-      //       <span className="flex flex-col items-end lg:items-center gap-1">
-      //         <span className="bg-[#3f76ff] text-on-color font-semibold text-9 p-0.5 w-fit whitespace-nowrap rounded-xs">
-      //           COMING SOON
-      //         </span>
-      //         Operator capsules from text or PQL
-      //       </span>
-      //     ),
-      //     enterprise: (
-      //       <span className="flex flex-col items-end lg:items-center gap-1">
-      //         <span className="bg-[#3f76ff] text-on-color font-semibold text-9 p-0.5 w-fit whitespace-nowrap rounded-xs">
-      //           COMING SOON
-      //         </span>
-      //         Operator capsules from text or PQL
-      //       </span>
-      //     ),
-      //   },
-      // },
       {
         title: "PQL",
         description:
           "Write Plane Query Language in search with support\nfor Boolean operators. Soon, you can write natural\nlanguage queries.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -672,14 +594,14 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Number of seats that can use project and work management features",
         selfHostedDescription: "Number of users that our standard infra supports\nIncrease infra to get more users",
         cloud: {
-          free: "12",
+          free: "Unlimited",
           one: "",
           pro: "Unlimited",
           business: "Unlimited",
           enterprise: "Unlimited",
         },
         "self-hosted": {
-          free: "~50",
+          free: "Unlimited",
           one: "~50",
           pro: "~200",
           business: "~200",
@@ -690,7 +612,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Roles",
         description: "Choose from one of four pre-defined roles or create\ncustom ones with RBAC.",
         cloud: {
-          free: "Basic",
+          free: "RBAC",
           one: "Basic",
           pro: "Pre-defined roles",
           business: "RBAC",
@@ -701,7 +623,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Guests",
         description: "Let some users see everything or just their work items in\na project.",
         cloud: {
-          free: false,
+          free: "Unlimited",
           one: "5 per paid member",
           pro: "5 per paid member",
           business: "5 per paid member",
@@ -713,7 +635,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Set workspace, project, and work item type approvals to\ndesignated admins.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -724,7 +646,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Admin Interface",
         description: "Get an admin overview to manage workspace and\nproject settings.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -735,7 +657,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Workspace Activity Logs",
         description: "See filterable activity logs for your entire\nworkspace.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -747,7 +669,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "See a full-workspace audit log and use APIs to flag\nPlane activity in compliance systems.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -764,7 +686,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Trigger And Action",
         description: "Choose a trigger and a corresponding action per\nautomation flow.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -776,7 +698,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Use actions as triggers indefinitely in an\nautomation flow.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -787,7 +709,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Number of automations",
         description: "Total number of automation flows in your\nworkspace",
         cloud: {
-          free: false,
+          free: "Unlimited",
           one: false,
           pro: "5,000",
           business: "10,000",
@@ -815,7 +737,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Real-time Collab",
         description: "Edit a page together with members in your project,\nteam, or workspace.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -826,7 +748,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Work item Embeds",
         description: "Embed work items from any project you are a member\nof.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -837,7 +759,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Link-to-work items",
         description: "Link pages in work items in a separate section in work item\ndetails.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -849,7 +771,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description:
           "Put your pages on the web for external users and let\nthem comment without signing into your workspace.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -860,7 +782,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Wiki",
         description: "Create company-wide wikis or knowledge bases\nwithout creating a project.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -871,7 +793,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Exports",
         description: "Export page content into PDFs or Word-compatible\ndocs.",
         cloud: {
-          free: false,
+          free: "Queued downloads",
           one: false,
           pro: "One download\nat a time",
           business: "Queued downloads",
@@ -882,7 +804,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Templates",
         description: "Use pages as templates for your project, team, or\nworkspace.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -893,7 +815,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Versions",
         description: "See restorable version of edits to your pages.",
         cloud: {
-          free: false,
+          free: "Unlimited",
           one: false,
           pro: "2 days",
           business: "3 months",
@@ -906,7 +828,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
           "Put databases and formulas into a page without\nworrying about losing text, images, or other content\ntypes.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: true,
@@ -918,7 +840,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Pages inside a page, organize your pages\nas you see fit for the progressive\ndisclosure.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: "Word-compatible + other format downloads",
@@ -935,7 +857,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Jira",
         description: "Import your work items and members from Jira.",
         cloud: {
-          free: "Without custom props",
+          free: "With custom props",
           one: "Without custom props",
           pro: "With custom props",
           business: "With custom props",
@@ -946,7 +868,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "GitHub",
         description: "Import your work items and members from GitHub.",
         cloud: {
-          free: "Without custom props",
+          free: "With custom props",
           one: "Without custom props",
           pro: "With custom props",
           business: "With custom props",
@@ -965,7 +887,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description:
           "Sync Plane work items and states to GitHub work items and\nstates. Update GitHub automatically with activity\nfrom Plane and vice-versa.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -976,7 +898,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Slack",
         description: "Get Plane activity in Slack and use / commands in\nSlack to make changes in Plane.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -987,7 +909,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Zapier",
         description: "Run if-then-else automations using Zapier.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -998,7 +920,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Zendesk",
         description: "Create Plane work items from Zendesk tickets.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -1009,7 +931,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Freshdesk",
         description: "Create Plane work items from Freshdesk tickets.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -1027,7 +949,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Space",
         description: "Total storage allowed per workspace",
         cloud: {
-          free: "5GB",
+          free: "Unlimited",
           one: false,
           pro: "1 TB",
           business: "5 TB",
@@ -1038,7 +960,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Max file size",
         description: "Limit for uploads to your workspace",
         cloud: {
-          free: "5 MB",
+          free: "Unlimited",
           one: false,
           pro: "100 MB",
           business: "200 MB",
@@ -1055,7 +977,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "SAML",
         description: "Get the officially supported SAML implementation\nand make Plane secure with any IdP.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -1067,7 +989,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Get the officially supported OIDC implementation\nand make Plane secure with any IdP.",
         selfHostedOnly: true,
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -1079,7 +1001,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description:
           "Choose other domains that can authenticate into\nyour Plane workspace or restrict all but one domain.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -1090,7 +1012,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Two-factor authentication and passkeys",
         description: "Secure your Plane workspace with device-\ndependent two-factor authentication and passkeys. ",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -1101,7 +1023,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Password Policy",
         description: "Set custom password policies in line with your\ncompliance requirements.",
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -1113,7 +1035,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Get our official LDAP implementation and secure\nyour Plane workspace with your LDAP server.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: false,
@@ -1142,7 +1064,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "One-click Deployment",
         description: "Install and deploy your self-hosted Plane to any\nprivate cloud with a single-line command.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -1153,7 +1075,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Digital Ocean Marketplace app",
         description: "Get our Digital Ocean-compatible app on their\nmarketplace.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -1164,7 +1086,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Heroku Platform app",
         description: "Get our Heroku Platform-compatible app and deploy\nto Heroku easily.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -1175,7 +1097,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "AWS AMI",
         description: "Get our AMI-compatible app from the AWS\nmarketplace.",
         cloud: {
-          free: false,
+          free: true,
           one: true,
           pro: true,
           business: true,
@@ -1187,7 +1109,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: "Get our hosted Cloud app on a private Cloud\nmanaged by us.",
         comingSoon: true,
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: false,
           business: false,
@@ -1204,11 +1126,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         title: "Channels",
         description: "Get access to one or more Support channels\nby your plan.",
         cloud: {
-          free: (
-            <>
-              <RiDiscordFill className="size-4" />
-            </>
-          ),
+          free: "Full-suite\nprofessional services",
           one: (
             <div className="flex items-center gap-1">
               <Mail className="flex-shrink-0 size-4" />
@@ -1238,7 +1156,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
           </>
         ),
         cloud: {
-          free: false,
+          free: true,
           one: false,
           pro: true,
           business: true,
@@ -1296,7 +1214,7 @@ export const PLANE_PLANS: PlanePlans = {
     },
   },
   planHighlights: {
-    free: ["Upto 12 users", "Pages", "Unlimited projects", "Unlimited cycles and modules"],
+    free: ["Unlimited users", "Enterprise Features", "Advanced Security", "All Integrations"],
     one: ["Upto 50 users", "OIDC and SAML", "Active cycles", "Limited time tracking"],
     pro: ["Unlimited users", "Custom work items + Properties", "Work item templates", "Full Time Tracking"],
     business: ["RBAC", "Project Templates", "Baselines And Deviations", "Custom Reports"],

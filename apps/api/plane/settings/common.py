@@ -462,3 +462,43 @@ if ENABLE_DRF_SPECTACULAR:
 # MongoDB Settings
 MONGO_DB_URL = os.environ.get("MONGO_DB_URL", False)
 MONGO_DB_DATABASE = os.environ.get("MONGO_DB_DATABASE", False)
+
+# 1. Force Unlimited Seats & Plans
+os.environ["PLAN_SEATS"] = "9999999"
+os.environ["IS_PRO"] = "True" # Helping flag for custom logic
+
+# 2. LDAP / Active Directory Setup
+# We wrap this in try/except to prevent build crashes if the package isn't installed yet
+try:
+    import ldap
+    from django_auth_ldap.config import LDAPSearch
+    
+    if os.environ.get("ENABLE_LDAP", "False") == "True":
+        AUTHENTICATION_BACKENDS = [
+            "django_auth_ldap.backend.LDAPBackend",
+            "django.contrib.auth.backends.ModelBackend",
+        ]
+
+        # Server Config
+        AUTH_LDAP_SERVER_URI = os.environ.get("LDAP_SERVER_URI", "ldap://localhost")
+        AUTH_LDAP_BIND_DN = os.environ.get("LDAP_BIND_DN", "")
+        AUTH_LDAP_BIND_PASSWORD = os.environ.get("LDAP_BIND_PASSWORD", "")
+
+        # Search Config (Change 'uid' to 'sAMAccountName' for Active Directory)
+        AUTH_LDAP_USER_SEARCH = LDAPSearch(
+            os.environ.get("LDAP_USER_SEARCH_BASE", "dc=example,dc=com"),
+            ldap.SCOPE_SUBTREE,
+            f"({os.environ.get('LDAP_UID_FIELD', 'uid')}=%(user)s)",
+        )
+
+        # Attribute Mapping (LDAP -> Plane User)
+        AUTH_LDAP_USER_ATTR_MAP = {
+            "first_name": "givenName",
+            "last_name": "sn",
+            "email": "mail",
+        }
+        
+        # Create user in Plane if they exist in LDAP
+        AUTH_LDAP_ALWAYS_UPDATE_USER = True
+except ImportError:
+    pass

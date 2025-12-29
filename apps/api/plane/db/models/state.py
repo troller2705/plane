@@ -77,12 +77,14 @@ class State(ProjectBaseModel):
     description = models.TextField(verbose_name="State Description", blank=True)
     color = models.CharField(max_length=255, verbose_name="State Color")
     slug = models.SlugField(max_length=100, blank=True)
+    icon = models.CharField(max_length=255, null=True, blank=True)
     sequence = models.FloatField(default=65535)
     group = models.CharField(
         choices=StateGroup.choices,
         default=StateGroup.BACKLOG,
         max_length=20,
     )
+    group_link = models.ForeignKey(StateGroup, related_name="states", on_delete=models.RESTRICT, null=True)
     is_triage = models.BooleanField(default=False)
     default = models.BooleanField(default=False)
     external_source = models.CharField(max_length=255, null=True, blank=True)
@@ -120,3 +122,21 @@ class State(ProjectBaseModel):
                 self.sequence = last_id + 15000
 
         return super().save(*args, **kwargs)
+
+# Add this NEW Class
+class StateGroup(BaseModel):
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    sequence = models.FloatField(default=65535)
+    workspace = models.ForeignKey("plane.Workspace", related_name="state_groups", on_delete=models.CASCADE)
+    icon = models.CharField(max_length=255, default="lucide:circle", blank=True)
+    SYSTEM_STAGES = (
+        ("backlog", "Backlog"), ("unstarted", "Unstarted"), 
+        ("started", "Started"), ("completed", "Completed"), ("cancelled", "Cancelled"),
+    )
+    system_stage = models.CharField(choices=SYSTEM_STAGES, max_length=20, default="unstarted")
+    
+    class Meta:
+        unique_together = ["workspace", "name"]
+        db_table = "plane_state_group"
+        ordering = ["sequence", "name"]

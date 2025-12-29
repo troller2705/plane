@@ -53,3 +53,6 @@ def get_email_configuration():
             },
         ]
     )
+    
+def get_instance_seats(instance):
+    return 9999999
