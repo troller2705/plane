@@ -1,39 +1,38 @@
-(plane_proxy) {
-	request_body {
-		max_size {$FILE_SIZE_LIMIT}
-	}
-
-  redir /spaces /spaces/ permanent
-	reverse_proxy /spaces/* space:3000
-
-  redir /god-mode /god-mode/ permanent
-	reverse_proxy /god-mode/* admin:3000
-	
-	reverse_proxy /live/* live:3000
-
-	reverse_proxy /api/* api:8000
-
-	reverse_proxy /auth/* api:8000
-
-	reverse_proxy /static/* api:8000
-
-	reverse_proxy /{$BUCKET_NAME}/* plane-minio:9000
-	reverse_proxy /{$BUCKET_NAME} plane-minio:9000
-
-	reverse_proxy /* web:3000
-}
-
 {
-	{$CERT_EMAIL}
-	acme_ca {$CERT_ACME_CA:https://acme-v02.api.letsencrypt.org/directory} 
-	{$CERT_ACME_DNS}
-	servers {
-		max_header_size 25MB
-		client_ip_headers X-Forwarded-For X-Real-IP
-		trusted_proxies static {$TRUSTED_PROXIES:0.0.0.0/0}
-	}
+    admin off
+    auto_https off
 }
 
-{$SITE_ADDRESS} {
-	import plane_proxy
+:80 {
+    # 1. API & Auth (Django -> Service Name: api)
+    handle /api/* {
+        reverse_proxy api:8000
+    }
+    handle /auth/* {
+        reverse_proxy api:8000
+    }
+
+    # 2. Live Service (Node -> Service Name: live)
+    handle /live/* {
+        reverse_proxy plane-live:3000
+    }
+
+    # 3. Spaces (Nginx -> Service Name: space)
+    handle_path /spaces/* {
+        reverse_proxy space:80
+    }
+
+    # 4. Admin (Nginx -> Service Name: admin)
+    handle_path /god-mode/* {
+        reverse_proxy admin:80
+    }
+
+    # 5. Main Web App (Nginx -> Service Name: web)
+    handle /* {
+        reverse_proxy web:80
+    }
+
+    log {
+        output stdout
+    }
 }
