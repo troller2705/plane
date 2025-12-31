@@ -1,16 +1,11 @@
 import type { Dispatch, SetStateAction } from "react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { observer } from "mobx-react";
-import { Pencil, Trash2 } from "lucide-react";
 import { Disclosure, Transition } from "@headlessui/react";
-import { PROJECT_SETTINGS_TRACKER_ELEMENTS } from "@plane/constants";
-import { ChevronDownIcon } from "@plane/propel/icons";
-// store
-// icons
-// types
+// plane imports
+import { EditIcon, TrashIcon, ChevronDownIcon } from "@plane/propel/icons";
 import type { IIssueLabel } from "@plane/types";
 // components
-import { captureClick } from "@/helpers/event-tracker.helper";
 import type { TLabelOperationsCallbacks } from "./create-update-label-inline";
 import { CreateUpdateLabelInline } from "./create-update-label-inline";
 import type { ICustomMenuItem } from "./label-block/label-item-block";
@@ -53,11 +48,8 @@ export const ProjectSettingLabelGroup = observer(function ProjectSettingLabelGro
 
   const customMenuItems: ICustomMenuItem[] = [
     {
-      CustomIcon: Pencil,
+      CustomIcon: EditIcon,
       onClick: () => {
-        captureClick({
-          elementName: PROJECT_SETTINGS_TRACKER_ELEMENTS.LABELS_CONTEXT_MENU,
-        });
         setEditLabelForm(true);
         setIsUpdating(true);
       },
@@ -66,11 +58,8 @@ export const ProjectSettingLabelGroup = observer(function ProjectSettingLabelGro
       key: "edit_label",
     },
     {
-      CustomIcon: Trash2,
+      CustomIcon: TrashIcon,
       onClick: () => {
-        captureClick({
-          elementName: PROJECT_SETTINGS_TRACKER_ELEMENTS.LABELS_CONTEXT_MENU,
-        });
         handleLabelDelete(label);
       },
       isVisible: true,
